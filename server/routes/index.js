@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const todos = require('./todo.routes');
+const books = require('./book.routes');
 
 // /api/todo
-router.use('/api/todo', todos);
+router.use('/api/book', books);
 
 module.exports = router;

@@ -2,11 +2,11 @@ const router = require('express').Router();
 const { Todo } = require('../models');
 
 // restful api
-// /api/todo/
+// /api/book/
 router
   .route('/')
   .get((req, res) => {
-    Todo
+    Book
       .find({})
       .then(data => {
         res.json({ success: true, data });
@@ -18,9 +18,13 @@ router
   .post((req, res) => {
     console.log({ reqBody: req.body });
 
-    Todo
+    Book
       .create({
-        text: req.body.text
+        title: req.body.title,
+        authors: req.body.authors,
+        description: req.body.description,
+        image: req.body.image,
+        link: req.body.link
       })
       .then(data => {
         res.json({ success: true, data });
