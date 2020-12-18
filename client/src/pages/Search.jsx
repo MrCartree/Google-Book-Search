@@ -1,11 +1,12 @@
 import React from 'react';
+import BooksContainer from "../components/BooksContainer/BooksContainer"
 
-const Homepage = () => {
+const Search = () => {
   return (
-    <>
-      <h2>Welcome to the better todo app!</h2>
-    </>
+    <React.Fragment>
+      <BooksContainer />
+    </React.Fragment>
   );
 };
 
-export default Homepage;
+export default Search;
