@@ -8,15 +8,14 @@ function BookContainer() {
   const [result, setResult] = useState([]);
   const [search, setSearch] = useState("");
 
-
   async function searchBooks(query) {
 
     await API.search(query)
     
       .then(res => setResult(res.data.items))
       .catch(err => console.log(err));
-  };
-    console.log(result[0].volumeInfo.title);
+    };
+    console.log(result);
 
   function handleInputChange(event) {
     const value = event.target.value;
@@ -37,7 +36,7 @@ function BookContainer() {
        handleInputChange={handleInputChange}
        handleFormSubmit={handleFormSubmit}     
        />
-       <BookDetail title={result[0].volumeInfo.title} />
+      <BookDetail results={result} />
     </div>
   )
 }

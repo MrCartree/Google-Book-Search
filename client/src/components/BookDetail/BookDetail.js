@@ -2,16 +2,19 @@ import React from "react";
 
 function BookDetail(props) {
   return (
-    <div className="text-center">
-      <div>
-        {props.title}
-      </div>
-
-      {/* <img alt={props.title} className="img-fluid" src={props.src} style={{ margin: "0 auto" }} />
-      <h3>Director(s): {props.director}</h3>
-      <h3>Genre: {props.genre}</h3>
-      <h3>Released: {props.released}</h3> */}
-    </div>
+    console.log({...props.results}),
+      <ul className="" >
+        {props.results.map(result => (
+          <li key={result.accessInfo.id}>
+            <h2>{result.volumeInfo.title}</h2>
+            <h3>{result.volumeInfo.authors}</h3>
+            <p>{result.volumeInfo.description}</p>
+            <img src={result.volumeInfo.imageLinks ? result.volumeInfo.imageLinks.thumbnail : null} alt={result.volumeInfo.title} />
+            <a href={result.volumeInfo.infoLink} target="_blank" rel="noreferrer" >Book Info</a>
+            <button>Save</button>
+          </li>
+        ))}
+      </ul>
   );
 }
 
