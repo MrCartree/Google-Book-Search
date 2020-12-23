@@ -41,6 +41,14 @@ router
   .delete((req, res) => {
     console.log(req.params);
 
+    Book
+        .findByIdAndDelete(req.params.id)
+        .then(data => {
+          res.json({ success: true, data });
+        })
+        .catch(err => {
+          res.json({ success: false, err });
+        });
   });
 
 module.exports = router;

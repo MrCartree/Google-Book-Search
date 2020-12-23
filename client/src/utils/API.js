@@ -7,5 +7,11 @@ const BASEURL = "https://www.googleapis.com/books/v1/volumes?q="
 export default {
   search: function(query) {
     return axios.get(BASEURL + query);
+  },
+
+  deleteBook: function(id) {
+    console.log(id);
+    return axios.delete("/api/book/" + id);
   }
+
 };

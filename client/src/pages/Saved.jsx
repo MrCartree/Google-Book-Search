@@ -1,42 +1,57 @@
 import React, { useEffect } from 'react';
 import { useGlobalContext } from '../utils/GlobalContext';
+import API from "../utils/API"
 
-const ViewTodos = () => {
+const ViewBooks = () => {
   const [state, dispatch] = useGlobalContext();
   console.log({ state })
 
+  function onClick(id) {
+    API.deleteBook(id)
+      .then(res => fetchBook())
+      .catch(err => console.log(err));
+
+  }
+
+  async function fetchBook() {
+    try {
+      const response = await fetch('/api/book');
+      const json = await response.json();
+      console.log({ json });
+
+      dispatch({ type: 'setBooks', payload: json.data });
+    } catch (err) {
+      console.log({ err });
+    }
+  }
 
   useEffect(() => {
-    async function fetchTodos() {
-      try {
-        const response = await fetch('/api/todo');
-        const json = await response.json();
-        console.log({ json });
-
-        dispatch({ type: 'setTodos', payload: json.data });
-      } catch (err) {
-        console.log({ err });
-      }
-    }
-
-    fetchTodos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchBook();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="Todos">
       <h3 className="Todos-header">Current Todos</h3>
       <ul className="Todos-list">
-        {state.todos.map(todo => (
-          <li key={todo._id} className="Todos-listItem">
+        {state.books.map(book => (
+          <li key={book._id} className="books-listItem">
             <span>
-              {todo.text}
+              <h2>{book.title}</h2>
+              <h3>{book.authors}</h3>
+              <img src={book.image ? book.image : null} alt={book.title} />
+              <p>{book.description}</p>
+              <a href={book.link} target="_blank" rel="noreferrer" >Book Info</a>
+              <button onClick={() => onClick(book._id)}>Delete</button>
             </span>
           </li>
         ))}
+
       </ul>
     </div>
   );
 };
 
-export default ViewTodos;
+
+
+export default ViewBooks;

@@ -6,7 +6,7 @@ function BookInfo(props) {
     e.preventDefault();
 
     fetch('/api/book', {
-      method: 'POST',
+      method: 'GET',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         authors: props.volumeInfo.authors,
@@ -18,8 +18,9 @@ function BookInfo(props) {
     }).then(res => res.json())
       .then(res => console.log(res));
   }
+
   return (
-    <li>
+    <li key={props.accessInfo.id}>
       <h2>{props.volumeInfo.title}</h2>
       <h3>{props.volumeInfo.authors}</h3>
       <p>{props.volumeInfo.description}</p>
@@ -35,7 +36,7 @@ function BookDetail(props) {
     console.log({ ...props.results }),
     <ul className="" >
       {props.results.map(result => (
-          <BookInfo key={result.id} {...result} />
+          <BookInfo {...result} />
         ))}
     </ul>
   );
