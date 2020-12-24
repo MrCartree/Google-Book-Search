@@ -31,22 +31,25 @@ const ViewBooks = () => {
   }, []);
 
   return (
-    <div className="Todos">
-      <h3 className="Todos-header">Current Todos</h3>
-      <ul className="Todos-list">
+    <div className="">
+      <h3 className="">Saved Books</h3>
+      <ul className="">
         {state.books.map(book => (
-          <li key={book._id} className="books-listItem">
-            <span>
+          <div key={book._id} className="card text-center">
+            <div className="card-header">
+              <img src={book.image ? book.image : null} alt={book.title} />
+            </div>
+            <div className="card-body">
               <h2>{book.title}</h2>
               <h3>{book.authors}</h3>
-              <img src={book.image ? book.image : null} alt={book.title} />
               <p>{book.description}</p>
               <a href={book.link} target="_blank" rel="noreferrer" >Book Info</a>
-              <button onClick={() => onClick(book._id)}>Delete</button>
-            </span>
-          </li>
+              <div>
+                <button className="btn btn-primary" onClick={() => onClick(book._id)}>Delete</button>
+              </div>
+            </div>
+          </div>
         ))}
-
       </ul>
     </div>
   );
