@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="Navbar">
       <div className="Navbar-brand">
-        <span>GOOGLE BOOK SEARCH</span>
+        <span>GOOGLE BOOKS SEARCH</span>
       </div>
 
       <ul className="Navbar-links">
