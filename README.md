@@ -11,7 +11,7 @@ Google Book Search a simple way to search and save books that you find interest 
 
 ### Screenshot
 
-![Google Books](/client/src/images/GoogleBooksSearch.PNG)
+![Google Books](./client/src/images/GoogleBooksSearch.PNG)
 
 This project was authored by me [Zach LaFleur](https://github.com/MrCartree)
 
